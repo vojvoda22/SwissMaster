@@ -84,3 +84,16 @@ for f in tests/test_*.js; do node "$f"; done
 `-- tests/
     `-- test_*.js               # coverage across logic/state/ui
 ```
+
+---
+
+## Contributing
+Contributions are welcome! You can help by:
+
+1. Adding new spreadsheet features (formulas, formatting, copy-paste, etc.)
+
+2. Improving performance & UI
+
+3. Writing documentation or tutorials
+
+Opening issues or pull requests for bug fixes and ideas
