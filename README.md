@@ -8,6 +8,8 @@ SwissMaster is a browser-based tournament manager for chess events with support 
 - Round-robin pairings
 - Live standings, tiebreaks, and exports
 
+---
+
 ## Live Demo
 
 Try it in your browser (It might show as a security risk, but there is no harmfull code:  [**Open SwissMaster Demo**](https://soham-rath.github.io/SwissMaster/)
@@ -23,6 +25,8 @@ Try it in your browser (It might show as a security risk, but there is no harmfu
 5. Enter results and advance rounds.
 6. Export standings/data as needed.
 
+---
+
 ## Development
 
 No build step is required.
@@ -35,6 +39,8 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+---
+
 ## Testing
 
 Tests are plain Node.js scripts in `tests/`.
@@ -44,6 +50,8 @@ Run all tests:
 ```bash
 for f in tests/test_*.js; do node "$f"; done
 ```
+
+---
 
 ## Project Structure
 
