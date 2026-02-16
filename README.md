@@ -16,14 +16,19 @@ Try it in your browser (It might show as a security risk, but there is no harmfu
 
 ---
 
-## Quick Start
+---
 
-1. Open `index.html` directly in a browser.
-2. Configure tournament settings in Setup.
-3. Add teams or players.
-4. Start the tournament.
-5. Enter results and advance rounds.
-6. Export standings/data as needed.
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/soham-rath/SwissMaster.git
+```
+
+2. Open index.html in your browser.
+
+3. Explore the full functionality!
 
 ---
 
