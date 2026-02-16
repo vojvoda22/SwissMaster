@@ -108,8 +108,7 @@ function calculateStandings(maxRound) {
           const opp = getTeam(oppId);
           if (!opp) return;
 
-          // CRITICAL: We need the opponent's MP *at this point*? 
-          // Standard Buchholz uses current tournament standings MP.
+          // Standard Buchholz uses current opponent match points.
           bh += opp.mp;
 
           let ptsA = 0;
@@ -366,4 +365,3 @@ function calculateStandingsSingles(maxRound) {
     return b.buchholz - a.buchholz;
   });
 }
-
