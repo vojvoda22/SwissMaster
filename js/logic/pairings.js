@@ -140,14 +140,13 @@ function generatePairings() {
   const excludedIds = state.excludedTeamsThisRound || [];
   let pool = state.teams.filter((t) => !excludedIds.includes(t.id));
 
-  // Round 0: Split System (unchanged)
+  // Round 1 uses split pairing (top half vs bottom half).
   if (state.currentRound === 0) {
     let pairs = [];
     const half = Math.floor(pool.length / 2);
     // Simple top-half vs bottom-half
     for (let i = 0; i < half; i++) {
-      // Alternate colors for top half: 1st Match Top=W, 2nd Top=B... 
-      // This gives a nice spread.
+      // Alternate colors for the top half.
       const colorA = (i % 2 === 0) ? 'W' : 'B';
       pairs.push({ teamA: pool[i], teamB: pool[i + half], colorA: colorA });
     }
@@ -174,17 +173,19 @@ function generatePairings() {
     return;
   }
 
-  // Backtracking Solver for Rounds > 1
+  // Backtracking solver for rounds after the first.
   const pairingResult = runSwissPairing(pool);
   const pairings = pairingResult ? pairingResult.pairings : null;
 
   if (!pairings) {
-    console.error("CRITICAL: Unable to generate valid pairings.");
+    console.error("Unable to generate valid pairings.");
     if (typeof showAlert === "function") {
-      showAlert("Keine gültigen Paarungen nach FIDE-Regeln gefunden. Bitte manuell paaren oder Regeln lockern (in Arbeit).");
+      showAlert(
+        "Keine gültigen Paarungen gefunden. Bitte Paarungen manuell anpassen und erneut versuchen.",
+      );
     } else {
       console.error(
-        "Fehler: Keine gültige Paarung gefunden. (Keine UI verfügbar für Alert)",
+        "Keine gültige Paarung gefunden (kein UI-Alert verfügbar).",
       );
     }
     return;
