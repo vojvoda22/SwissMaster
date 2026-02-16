@@ -62,7 +62,7 @@ function loadState() {
       // Migration: Check for old single save
       const oldData = localStorage.getItem("swiss_manager_data");
       if (oldData) {
-        console.log("Migrating legacy save to new slot system...");
+        console.log("Migrating existing save to multi-tournament storage.");
         const oldState = parseJsonSafely(oldData, {});
         const newId = "tour_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
         meta = {
@@ -118,7 +118,7 @@ function loadState() {
 
 function createNewTournament(reload = true) {
   const newId = "tour_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-  // approximate reset
+  // Build a fresh state for the new tournament slot.
   state = {
     id: newId,
     config: { name: "Neues Turnier", type: "SWISS", totalRounds: 5, boardsPerMatch: 4, pointsMatchWin: 2, pointsMatchDraw: 1, pointsMatchLoss: 0, pointsBye: 2, rulesPreset: "CUSTOM" },
