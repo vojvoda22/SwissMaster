@@ -196,7 +196,7 @@ function startTournament() {
       return;
     }
 
-    commitState(); // Important: Undo starting the tournament
+    commitState();
 
     state.config.name = document.getElementById("tournament-name").value;
     const rInput = document.getElementById("total-rounds");
@@ -260,7 +260,7 @@ function startTournament() {
     // Show modal to select teams to exclude for first round (Swiss only)
     showExcludeModal();
   } catch (e) {
-    console.error("CRITICAL START ERROR", e);
+    console.error("Error while starting team tournament", e);
     showAlert("Fehler beim Starten des Turniers: " + e.message, "Fehler");
   }
 }
@@ -326,7 +326,7 @@ function startSinglesTournament() {
 
     showExcludeSinglesModal();
   } catch (e) {
-    console.error("CRITICAL START ERROR", e);
+    console.error("Error while starting singles tournament", e);
     showAlert("Fehler beim Starten des Turniers: " + e.message, "Fehler");
   }
 }
@@ -365,14 +365,10 @@ async function nextRound() {
   if (state.currentRound >= state.config.totalRounds) {
     showAlert("Turnier beendet! Endstand wird angezeigt.", "Turnierende");
     state.status = "FINISHED";
-    // Confirm final tally
-    console.log("Finishing tournament. Recalculating...");
     calculateStandings();
     saveState();
     renderStandings();
     showSection("standings");
-    // prompt user to know it's done
-    // showAlert("Turnier beendet! Endstand berechnet.", "Fertig");
     return;
   }
 
@@ -606,10 +602,7 @@ function resetRemoveRoster() {
   ).then((ok) => {
     if (!ok) return;
     try {
-      // Logic changed: reset current tournament only
-      // We use createNewTournament but keep ID? 
-      // Actually standard reset keeps ID.
-      // But let's just use createNewTournament(true) to make a fresh one.
+      // Create a new tournament slot and keep the old one stored.
       createNewTournament(true);
     } catch (e) {
       console.warn(e);
