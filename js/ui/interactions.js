@@ -326,8 +326,7 @@ function setupPresetListeners() {
       state.config.type = type;
       saveState();
     });
-    // Trigger once on load? No, easier to just trigger manully or let it default
-    // Actually we should trigger it if state is already RR.
+    // Sync form state on load when round-robin is already selected.
     if (state.config.type === "ROUND_ROBIN") {
       pairingSelect.dispatchEvent(new Event('change'));
     }
