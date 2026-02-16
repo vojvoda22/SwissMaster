@@ -10,8 +10,7 @@ SwissMaster is a browser-based tournament manager for chess events with support 
 
 ## Live Demo
 
-Try it in your browser (It might show as a security risk, but there is no harmfull code:  
-[**Open SwissMaster Demo**](https://soham-rath.github.io/SwissMaster/)
+Try it in your browser (It might show as a security risk, but there is no harmfull code:  [**Open SwissMaster Demo**](https://soham-rath.github.io/SwissMaster/)
 
 ---
 
