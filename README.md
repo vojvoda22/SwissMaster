@@ -1,4 +1,4 @@
-# SwissMaster - Swiss Team & Singles Chess Tournament Manager
+# SwissMaster
 
 SwissMaster is a browser-based tournament manager for chess events with support for:
 
@@ -8,37 +8,12 @@ SwissMaster is a browser-based tournament manager for chess events with support 
 - Round-robin pairings
 - Live standings, tiebreaks, and exports
 
-It is implemented in plain HTML/CSS/JavaScript and stores data in `localStorage`.
+## Live Demo
 
-## Features
+Try it in your browser (It might show as a security risk, but there is no harmfull code:  
+[**Open Rama Demo**](https://soham-rath.github.io/SwissMaster/)
 
-- Two tournament modes:
-  - `TEAM`
-  - `SINGLES`
-- Pairing systems:
-  - `SWISS`
-  - `ROUND_ROBIN`
-- Team scoring:
-  - Match points + board points
-  - Configurable presets (`FIDE`, `USCF`, `CUSTOM`)
-- Singles scoring:
-  - Configurable win/draw/loss/bye points
-  - Presets (`FIDE`, `USCF`, `CUSTOM`)
-- Tiebreak support:
-  - Buchholz
-  - Median Buchholz (team mode)
-  - Sonneborn-Berger (team mode)
-- Round flow:
-  - Exclude teams/players for a round (Swiss mode)
-  - Bye handling
-  - Undo/redo
-- Data management:
-  - Multi-tournament slot storage
-  - JSON import/export
-  - CSV export for standings and matches
-- UI utilities:
-  - Light/dark theme toggle
-  - Print current view
+---
 
 ## Quick Start
 
@@ -71,21 +46,6 @@ Run all tests:
 for f in tests/test_*.js; do node "$f"; done
 ```
 
-## Result Encoding
-
-Team board results use:
-
-- `1-0`
-- `0.5-0.5`
-- `0-1`
-- `0-0` (for missing/forfeited board outcome)
-
-Singles match results use:
-
-- `1-0`
-- `0.5-0.5`
-- `0-1`
-
 ## Project Structure
 
 ```text
@@ -112,13 +72,3 @@ Singles match results use:
 `-- tests/
     `-- test_*.js               # coverage across logic/state/ui
 ```
-
-## Storage
-
-- Tournament metadata key: `swiss_manager_meta`
-- Tournament data key pattern: `swiss_manager_data_<id>`
-- Legacy single-save key migration is supported from `swiss_manager_data`
-
-## License
-
-No license file is currently included in this repository.
