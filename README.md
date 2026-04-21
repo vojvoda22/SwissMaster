@@ -46,6 +46,30 @@ Then open `http://localhost:8080`.
 
 ---
 
+## Docker
+
+Build the image:
+
+```bash
+docker build -t swissmaster .
+```
+
+Run the app:
+
+```bash
+docker run --rm -p 8080:80 swissmaster
+```
+
+Then open `http://localhost:8080`.
+
+Or use Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+---
+
 ## Testing
 
 Tests are plain Node.js scripts in `tests/`.
