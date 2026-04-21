@@ -58,7 +58,7 @@ function lockSetup() {
       const saveBtn = document.createElement("button");
       saveBtn.id = "update-settings-btn";
       saveBtn.className = "btn secondary";
-      saveBtn.innerText = "💾 Einstellungen Speichern";
+      saveBtn.innerText = "💾 Save Settings";
       saveBtn.onclick = updateSettings;
       actionsDiv.appendChild(saveBtn);
     }
@@ -97,8 +97,8 @@ function renderSetup() {
     list.innerHTML = `
             <div class="empty-state">
                 <span class="empty-state-icon">👥</span>
-                <p>Noch keine Teams hinzugefügt.</p>
-                <p style="font-size:0.8rem; margin-top:0.5rem">Gib oben einen Namen ein und klicke auf + Hinzufügen.</p>
+                <p>No teams added yet.</p>
+                <p style="font-size:0.8rem; margin-top:0.5rem">Enter a name above and click + Add.</p>
             </div>
         `;
     return;
@@ -117,7 +117,7 @@ function renderSetup() {
                     onkeydown="if(event.key==='Enter') saveTeamName('${t.id}')">
                 <button class="btn secondary sm" style="padding: 0.2rem 0.5rem;" onclick="editTeam('${t.id}')">✎</button>
             </div>
-            <button class="delete-btn" onclick="removeTeam('${t.id}')" title="Team löschen">🗑️</button>
+            <button class="delete-btn" onclick="removeTeam('${t.id}')" title="Delete team">🗑️</button>
         `;
     list.appendChild(li);
   });
@@ -140,8 +140,8 @@ function renderSetupSingles() {
     list.innerHTML = `
             <div class="empty-state">
                 <span class="empty-state-icon">👥</span>
-                <p>Noch keine Spieler hinzugefügt.</p>
-                <p style="font-size:0.8rem; margin-top:0.5rem">Gib oben einen Namen ein und klicke auf + Hinzufügen.</p>
+                <p>No players added yet.</p>
+                <p style="font-size:0.8rem; margin-top:0.5rem">Enter a name above and click + Add.</p>
             </div>
         `;
     return;
@@ -159,7 +159,7 @@ function renderSetupSingles() {
                     onkeydown="if(event.key==='Enter') savePlayerName('${p.id}')">
                 <button class="btn secondary sm" style="padding: 0.2rem 0.5rem;" onclick="editPlayer('${p.id}')">✎</button>
             </div>
-            <button class="delete-btn" onclick="removePlayer('${p.id}')" title="Spieler löschen">🗑️</button>
+            <button class="delete-btn" onclick="removePlayer('${p.id}')" title="Delete player">🗑️</button>
         `;
     list.appendChild(li);
   });
@@ -170,7 +170,7 @@ function renderPairings(viewRoundNum = state.currentRound) {
 
   const displayRound = Math.min(Math.max(1, viewRoundNum), state.rounds.length);
   document.getElementById("round-display-pairings").innerText =
-    `Runde ${displayRound} Paarungen`;
+    `Round ${displayRound} Pairings`;
 
   // Add round selector
   const headerRow = document.querySelector("#pairings .header-row");
@@ -184,7 +184,7 @@ function renderPairings(viewRoundNum = state.currentRound) {
 
   selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderPairings(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderPairings(${displayRound + 1})" ${displayRound >= state.rounds.length ? "disabled" : ""}>→</button>
     `;
 
@@ -219,7 +219,7 @@ function renderPairingsSingles(viewRoundNum = state.singles.currentRound) {
     state.singles.rounds.length,
   );
   document.getElementById("round-display-pairings-singles").innerText =
-    `Runde ${displayRound} Paarungen`;
+    `Round ${displayRound} Pairings`;
 
   const headerRow = document.querySelector("#pairings-singles .header-row");
   let selector = document.getElementById("pairings-round-selector-singles");
@@ -231,7 +231,7 @@ function renderPairingsSingles(viewRoundNum = state.singles.currentRound) {
   }
   selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderPairingsSingles(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderPairingsSingles(${displayRound + 1})" ${displayRound >= state.singles.rounds.length ? "disabled" : ""}>→</button>
     `;
 
@@ -263,7 +263,7 @@ function renderResults(viewRoundNum = state.currentRound) {
 
   const displayRound = Math.min(Math.max(1, viewRoundNum), state.rounds.length);
   document.getElementById("round-display-results").innerText =
-    `Ergebnisse Runde ${displayRound}`;
+    `Results Round ${displayRound}`;
 
   const container = document.getElementById("results-container");
   container.innerHTML = "";
@@ -281,7 +281,7 @@ function renderResults(viewRoundNum = state.currentRound) {
   if (selector) {
     selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderResults(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderResults(${displayRound + 1})" ${displayRound >= state.rounds.length ? "disabled" : ""}>→</button>
     `;
   }
@@ -322,7 +322,7 @@ function renderResultsSingles(viewRoundNum = state.singles.currentRound) {
     state.singles.rounds.length,
   );
   document.getElementById("round-display-results-singles").innerText =
-    `Ergebnisse Runde ${displayRound}`;
+    `Results Round ${displayRound}`;
 
   const container = document.getElementById("results-container-singles");
   container.innerHTML = "";
@@ -338,7 +338,7 @@ function renderResultsSingles(viewRoundNum = state.singles.currentRound) {
   if (selector) {
     selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderResultsSingles(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderResultsSingles(${displayRound + 1})" ${displayRound >= state.singles.rounds.length ? "disabled" : ""}>→</button>
     `;
   }
@@ -378,7 +378,7 @@ function createSingleMatchCardHTML(roundNum, m, matchIndex, pA, pB) {
 
   return `
         <div class="table-number-box">
-            <span class="table-label">Tisch</span>
+            <span class="table-label">Board</span>
             <span class="table-value">${m.table}</span>
         </div>
         <div class="match-content">
@@ -386,7 +386,7 @@ function createSingleMatchCardHTML(roundNum, m, matchIndex, pA, pB) {
                 <span class="match-score">${pA.name} <span class="badge">${scoreA} - ${scoreB}</span> ${pB.name}</span>
             </div>
             <div class="board-row">
-                <span class="board-label">Ergebnis</span>
+                <span class="board-label">Result</span>
                 <span style="text-align:right"><b>${pA.name}</b></span>
                 <div class="result-button-group">
                     <button class="res-btn ${val === "1-0" ? "active" : ""}" onclick="updateSinglesMatchResult(${roundNum}, ${matchIndex}, '1-0')">1-0</button>
@@ -415,7 +415,7 @@ function createMatchCardHTML(roundNum, m, matchIndex, tA, tB) {
 
   let html = `
         <div class="table-number-box">
-            <span class="table-label">Tisch</span>
+            <span class="table-label">Board</span>
             <span class="table-value">${m.table}</span>
         </div>
         <div class="match-content">
@@ -427,12 +427,12 @@ function createMatchCardHTML(roundNum, m, matchIndex, tA, tB) {
   const boardCount = getBoardsPerMatch();
   for (let i = 0; i < boardCount; i++) {
     const val = m.results[i] || "";
-    const sideA = i % 2 === 0 ? "(W)" : "(S)";
-    const sideB = i % 2 === 0 ? "(S)" : "(W)";
+    const sideA = i % 2 === 0 ? "(W)" : "(B)";
+    const sideB = i % 2 === 0 ? "(B)" : "(W)";
 
     html += `
             <div class="board-row">
-                <span class="board-label">Brett ${i + 1}</span>
+                <span class="board-label">Board ${i + 1}</span>
                 <span style="text-align:right"><b>${tA.name}</b> ${sideA}</span>
                 <div class="result-button-group">
                     <button class="res-btn ${val === "1-0" ? "active" : ""}" data-match="${matchIndex}" data-board="${i}" data-val="1-0" onclick="updateMatchResult(${roundNum}, ${matchIndex}, ${i}, '1-0')">1-0</button>
@@ -464,7 +464,7 @@ function renderStandings(viewRoundNum = state.currentRound) {
   if (selector) {
     selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderStandings(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderStandings(${displayRound + 1})" ${displayRound >= state.rounds.length ? "disabled" : ""}>→</button>
     `;
   }
@@ -519,7 +519,7 @@ function renderStandingsSingles(viewRoundNum = state.singles.currentRound) {
   if (selector) {
     selector.innerHTML = `
         <button class="btn secondary sm" onclick="renderStandingsSingles(${displayRound - 1})" ${displayRound <= 1 ? "disabled" : ""}>←</button>
-        <span>Runde ${displayRound}</span>
+        <span>Round ${displayRound}</span>
         <button class="btn secondary sm" onclick="renderStandingsSingles(${displayRound + 1})" ${displayRound >= state.singles.rounds.length ? "disabled" : ""}>→</button>
     `;
   }
@@ -621,16 +621,16 @@ function showTeamDetail(teamId) {
   if (!team) return;
 
   document.getElementById("detail-team-name").innerText =
-    `Team-Historie: ${team.name}`;
+    `Team History: ${team.name}`;
   const container = document.getElementById("team-detail-content");
 
   let html = `
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Runde</th>
-                    <th>Gegner</th>
-                    <th>Ergebnis (BP)</th>
+                    <th>Round</th>
+                    <th>Opponent</th>
+                    <th>Result (BP)</th>
                     <th>MP</th>
                 </tr>
             </thead>
@@ -649,7 +649,7 @@ function showTeamDetail(teamId) {
       if (!match.isBye) {
         const oppId = match.teamA === teamId ? match.teamB : match.teamA;
         const oppTeam = getTeam(oppId);
-        opponentName = oppTeam ? oppTeam.name : "Unbekannt";
+        opponentName = oppTeam ? oppTeam.name : "Unknown";
 
         let ptsA = 0;
         let ptsB = 0;

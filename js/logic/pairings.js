@@ -3,8 +3,8 @@ function generatePairingsSingles() {
   if (maxRounds > 0 && state.singles.currentRound >= maxRounds) {
     if (typeof showAlert === "function") {
       showAlert(
-        "Die konfigurierte Rundenzahl ist bereits erreicht.",
-        "Keine weitere Runde",
+        "The configured number of rounds has already been reached.",
+        "No More Rounds",
       );
     } else {
       console.warn(
@@ -107,8 +107,8 @@ function generatePairings() {
   if (maxRounds > 0 && state.currentRound >= maxRounds) {
     if (typeof showAlert === "function") {
       showAlert(
-        "Die konfigurierte Rundenzahl ist bereits erreicht.",
-        "Keine weitere Runde",
+        "The configured number of rounds has already been reached.",
+        "No More Rounds",
       );
     } else {
       console.warn("Max rounds reached, cannot generate additional pairings.");
@@ -127,8 +127,8 @@ function generatePairings() {
       typeof showAlert === "function"
     ) {
       showAlert(
-        "Ausschlüsse sind im Round-Robin-Modus nicht verfügbar.",
-        "Hinweis",
+        "Exclusions are not available in Round Robin mode.",
+        "Notice",
       );
     }
     state.excludedTeamsThisRound = [];
@@ -181,11 +181,11 @@ function generatePairings() {
     console.error("Unable to generate valid pairings.");
     if (typeof showAlert === "function") {
       showAlert(
-        "Keine gültigen Paarungen gefunden. Bitte Paarungen manuell anpassen und erneut versuchen.",
+        "No valid pairings found. Please adjust pairings manually and try again.",
       );
     } else {
       console.error(
-        "Keine gültige Paarung gefunden (kein UI-Alert verfügbar).",
+        "No valid pairing found (no UI alert available).",
       );
     }
     return;
@@ -197,7 +197,7 @@ function generatePairings() {
     typeof showToast === "function"
   ) {
     showToast(
-      "Hinweis: Strikte Schweizer Paarung war nicht möglich. Wiederholte Paarung wurde verwendet.",
+      "Notice: strict Swiss pairing was not possible. A repeated pairing was used.",
       "info",
       4500,
     );
@@ -346,7 +346,7 @@ function generatePairingsRoundRobin() {
   const roundNum = state.currentRound + 1;
   if (roundNum > totalRounds) {
     if (typeof showAlert === "function") {
-      showAlert("Round Robin ist bereits abgeschlossen.", "Keine weitere Runde");
+      showAlert("Round Robin is already complete.", "No More Rounds");
     } else {
       console.warn("Round Robin finished. No more rounds to generate.");
     }
@@ -436,7 +436,7 @@ function generatePairingsSinglesRoundRobin() {
 
   if (roundNum > totalRounds) {
     if (typeof showAlert === "function") {
-      showAlert("Round Robin ist bereits abgeschlossen.", "Keine weitere Runde");
+      showAlert("Round Robin is already complete.", "No More Rounds");
     } else {
       console.warn("Round Robin finished. No more rounds to generate.");
     }

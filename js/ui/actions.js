@@ -74,7 +74,7 @@ function addTeam() {
     const name = input.value.trim();
     if (!name) return;
     if (hasTeamNameConflict(name)) {
-      showAlert("Dieses Team existiert bereits.", "Doppelter Name");
+      showAlert("This team already exists.", "Duplicate Name");
       return;
     }
 
@@ -87,7 +87,7 @@ function addTeam() {
     saveState();
   } catch (e) {
     console.error(e);
-    showAlert("Fehler beim Hinzufügen: " + e.message, "Fehler");
+    showAlert("Error while adding: " + e.message, "Error");
   }
 }
 
@@ -97,7 +97,7 @@ function addPlayer() {
     const name = input.value.trim();
     if (!name) return;
     if (hasPlayerNameConflict(name)) {
-      showAlert("Dieser Spieler existiert bereits.", "Doppelter Name");
+      showAlert("This player already exists.", "Duplicate Name");
       return;
     }
     const id =
@@ -109,7 +109,7 @@ function addPlayer() {
     saveState();
   } catch (e) {
     console.error(e);
-    showAlert("Fehler beim Hinzufügen: " + e.message, "Fehler");
+    showAlert("Error while adding: " + e.message, "Error");
   }
 }
 
@@ -125,7 +125,7 @@ function savePlayerName(id) {
   const newName = input.value.trim();
   if (newName) {
     if (hasPlayerNameConflict(newName, id)) {
-      showAlert("Dieser Spielername ist bereits vergeben.", "Doppelter Name");
+      showAlert("This player name is already taken.", "Duplicate Name");
       renderSetupSingles();
       return;
     }
@@ -142,7 +142,7 @@ function savePlayerName(id) {
 
 function removePlayer(id) {
   if (state.singles.status !== "SETUP") {
-    showAlert("Spieler können nach Turnierstart nicht entfernt werden.", "Hinweis");
+    showAlert("Players cannot be removed after the tournament has started.", "Notice");
     return;
   }
   commitState();
@@ -163,7 +163,7 @@ function saveTeamName(id) {
   const newName = input.value.trim();
   if (newName) {
     if (hasTeamNameConflict(newName, id)) {
-      showAlert("Dieser Teamname ist bereits vergeben.", "Doppelter Name");
+      showAlert("This team name is already taken.", "Duplicate Name");
       renderSetup();
       return;
     }
@@ -180,7 +180,7 @@ function saveTeamName(id) {
 
 function removeTeam(id) {
   if (state.status !== "SETUP") {
-    showAlert("Teams können nach Turnierstart nicht entfernt werden.", "Hinweis");
+    showAlert("Teams cannot be removed after the tournament has started.", "Notice");
     return;
   }
   commitState();
@@ -192,7 +192,7 @@ function removeTeam(id) {
 function startTournament() {
   try {
     if (state.teams.length < 2) {
-      showAlert("Mindestens 2 Teams erforderlich.", "Zu wenige Teams");
+      showAlert("At least 2 teams are required.", "Too Few Teams");
       return;
     }
 
@@ -261,14 +261,14 @@ function startTournament() {
     showExcludeModal();
   } catch (e) {
     console.error("Error while starting team tournament", e);
-    showAlert("Fehler beim Starten des Turniers: " + e.message, "Fehler");
+    showAlert("Error while starting the tournament: " + e.message, "Error");
   }
 }
 
 function startSinglesTournament() {
   try {
     if (state.singles.players.length < 2) {
-      showAlert("Mindestens 2 Spieler erforderlich.", "Zu wenige Spieler");
+      showAlert("At least 2 players are required.", "Too Few Players");
       return;
     }
 
@@ -327,7 +327,7 @@ function startSinglesTournament() {
     showExcludeSinglesModal();
   } catch (e) {
     console.error("Error while starting singles tournament", e);
-    showAlert("Fehler beim Starten des Turniers: " + e.message, "Fehler");
+    showAlert("Error while starting the tournament: " + e.message, "Error");
   }
 }
 
@@ -335,7 +335,7 @@ async function nextRound() {
   // Check if round complete
   const currentRoundObj = state.rounds[state.currentRound - 1];
   if (!currentRoundObj) {
-    showAlert("Keine aktuelle Runde gefunden.", "Hinweis");
+    showAlert("No current round found.", "Notice");
     return;
   }
   const incomplete = currentRoundObj.matches.some(
@@ -345,8 +345,8 @@ async function nextRound() {
   if (
     incomplete &&
     !(await showConfirm(
-      "Einige Ergebnisse fehlen. Trotzdem nächste Runde? (Fehlende werden als 0-0 gewertet)",
-      "Runde unvollständig",
+      "Some results are missing. Continue to the next round anyway? (Missing results will be scored as 0-0)",
+      "Round Incomplete",
     ))
   ) {
     return;
@@ -363,7 +363,7 @@ async function nextRound() {
   calculateStandings();
 
   if (state.currentRound >= state.config.totalRounds) {
-    showAlert("Turnier beendet! Endstand wird angezeigt.", "Turnierende");
+    showAlert("Tournament finished! Final standings are shown.", "Tournament Finished");
     state.status = "FINISHED";
     calculateStandings();
     saveState();
@@ -388,8 +388,8 @@ async function nextRound() {
 function addExtraRound() {
   if (state.config.type === "ROUND_ROBIN") {
     showAlert(
-      "Im Round-Robin-Modus sind zusätzliche Runden nicht verfügbar.",
-      "Hinweis",
+      "Additional rounds are not available in Round Robin mode.",
+      "Notice",
     );
     return;
   }
@@ -428,8 +428,8 @@ function confirmExcludeAndPair() {
   );
   if (remainingTeams.length < 2) {
     showAlert(
-      "Es müssen mindestens 2 Teams für die Paarungen übrig bleiben.",
-      "Hinweis",
+      "At least 2 teams must remain for pairings.",
+      "Notice",
     );
     return;
   }
@@ -465,8 +465,8 @@ function confirmExcludeSinglesAndPair() {
   );
   if (remainingPlayers.length < 2) {
     showAlert(
-      "Es müssen mindestens 2 Spieler für die Paarungen übrig bleiben.",
-      "Hinweis",
+      "At least 2 players must remain for pairings.",
+      "Notice",
     );
     return;
   }
@@ -498,8 +498,8 @@ function updateSettings() {
     hasRecordedBoardsBeyondLimit(nextBoards)
   ) {
     showAlert(
-      "Brettanzahl kann nicht reduziert werden, solange dort Ergebnisse eingetragen sind.",
-      "Ungültige Einstellung",
+      "The number of boards cannot be reduced while results are recorded there.",
+      "Invalid Setting",
     );
     const boardsInput = document.getElementById("boards-count");
     if (boardsInput) boardsInput.value = currentBoards;
@@ -544,7 +544,7 @@ function updateSettings() {
   calculateStandings();
   saveState();
   renderAll();
-  showToast("Einstellungen gespeichert.", "success");
+  showToast("Settings saved.", "success");
 }
 
 async function updateMatchResult(roundNum, matchIndex, boardIndex, value) {
@@ -583,8 +583,8 @@ function resetTournament() {
   if (msg) {
     msg.innerText =
       state.mode === "SINGLES"
-        ? "Spieler löschen oder behalten?"
-        : "Mannschaften löschen oder behalten?";
+        ? "Delete or keep players?"
+        : "Delete or keep teams?";
   }
   if (modal) modal.classList.remove("hidden");
 }
@@ -597,8 +597,8 @@ function closeResetOptionsModal() {
 function resetRemoveRoster() {
   closeResetOptionsModal();
   showConfirm(
-    "Wirklich das gesamte Turnier löschen? Alle Daten gehen verloren!",
-    "Turnier Reset",
+    "Really delete the entire tournament? All data will be lost!",
+    "Reset Tournament",
   ).then((ok) => {
     if (!ok) return;
     try {
@@ -630,14 +630,14 @@ function openTournamentManager() {
     li.innerHTML = `
             <div style="flex:1">
                 <div style="font-weight:bold; ${isActive ? 'color:var(--primary-color);' : ''}">
-                    ${t.name} ${isActive ? '(Aktiv)' : ''}
+                    ${t.name} ${isActive ? '(Active)' : ''}
                 </div>
                 <div style="font-size:0.8rem; opacity:0.7">
-                    ${t.mode === 'SINGLES' ? 'Einzel' : 'Team'} • ${date}
+                    ${t.mode === 'SINGLES' ? 'Singles' : 'Team'} • ${date}
                 </div>
             </div>
             <div style="display:flex; gap:0.5rem;">
-                ${!isActive ? `<button class="btn secondary sm" onclick="switchTournament('${t.id}')">Laden</button>` : ''}
+                ${!isActive ? `<button class="btn secondary sm" onclick="switchTournament('${t.id}')">Load</button>` : ''}
                 <button class="btn danger sm" onclick="deleteTournamentUI('${t.id}')">🗑️</button>
             </div>
         `;
@@ -652,13 +652,13 @@ function closeTournamentManager() {
 }
 
 function createNewTournamentUI() {
-  if (confirm("Neues Turnier erstellen? Das aktuelle Turnier wird geschlossen (aber gespeichert).")) {
+  if (confirm("Create a new tournament? The current tournament will be closed but saved.")) {
     createNewTournament();
   }
 }
 
 function deleteTournamentUI(id) {
-  if (confirm("Turnier wirklich unwiderruflich löschen?")) {
+  if (confirm("Permanently delete this tournament?")) {
     deleteTournament(id);
     openTournamentManager(); // Refresh list
   }
@@ -742,7 +742,7 @@ function checkSinglesRoundCompleteness() {
 async function nextSinglesRound() {
   const currentRoundObj = state.singles.rounds[state.singles.currentRound - 1];
   if (!currentRoundObj) {
-    showAlert("Keine aktuelle Runde gefunden.", "Hinweis");
+    showAlert("No current round found.", "Notice");
     return;
   }
   const incomplete = currentRoundObj.matches.some(
@@ -752,15 +752,15 @@ async function nextSinglesRound() {
   if (
     incomplete &&
     !(await showConfirm(
-      "Einige Ergebnisse fehlen. Trotzdem nächste Runde?",
-      "Runde unvollständig",
+      "Some results are missing. Continue to the next round anyway?",
+      "Round Incomplete",
     ))
   ) {
     return;
   }
 
   if (state.singles.currentRound >= state.singles.config.totalRounds) {
-    showAlert("Turnier beendet! Endstand wird angezeigt.", "Turnierende");
+    showAlert("Tournament finished! Final standings are shown.", "Tournament Finished");
     state.singles.status = "FINISHED";
     calculateStandingsSingles();
     saveState();

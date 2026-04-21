@@ -29,7 +29,7 @@ function undo() {
   updateUndoRedoUI();
 
   if (typeof showToast === "function")
-    showToast("Rückgängig gemacht", "info", 1500);
+    showToast("Undone", "info", 1500);
 }
 
 function redo() {
@@ -47,7 +47,7 @@ function redo() {
   updateUndoRedoUI();
 
   if (typeof showToast === "function")
-    showToast("Wiederhergestellt", "info", 1500);
+    showToast("Redone", "info", 1500);
 }
 
 function updateUndoRedoUI() {

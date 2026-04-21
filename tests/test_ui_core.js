@@ -126,9 +126,9 @@ const cardHtml = createMatchCardHTML(
   { name: "A" },
   { name: "B" },
 );
-assert(cardHtml.includes("Tisch"));
-assert(cardHtml.includes("Brett 1"));
-assert(cardHtml.includes("Brett 2"));
+assert(cardHtml.includes("Board"));
+assert(cardHtml.includes("Board 1"));
+assert(cardHtml.includes("Board 2"));
 assert(cardHtml.includes("1.5 - 0.5"));
 
 const singleCardHtml = createSingleMatchCardHTML(

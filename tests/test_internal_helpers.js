@@ -61,7 +61,7 @@ const normalized = normalizeMeta({
 });
 assert.strictEqual(normalized.activeId, "one");
 assert.strictEqual(normalized.tournaments.length, 2);
-assert.strictEqual(normalized.tournaments[0].name, "Turnier");
+assert.strictEqual(normalized.tournaments[0].name, "Tournament");
 assert.strictEqual(normalized.tournaments[0].mode, "SINGLES");
 assert.strictEqual(normalized.tournaments[0].lastModified, 123);
 

@@ -1,4 +1,4 @@
-  const INITIAL_NAME = "Schachturnier";
+  const INITIAL_NAME = "Chess Tournament";
   const INITIAL_TEAMS = ["Team 1", "Team 2", "Team 3", "Team 4"];
   const RULES_PRESETS = {
     FIDE: {

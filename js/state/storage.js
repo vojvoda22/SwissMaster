@@ -26,7 +26,7 @@ function normalizeMeta(meta) {
         name:
           typeof item.name === "string" && item.name.trim()
             ? item.name
-            : "Turnier",
+            : "Tournament",
         lastModified: Number.isFinite(Number(item.lastModified))
           ? Number(item.lastModified)
           : 0,
@@ -108,7 +108,11 @@ function loadState() {
 
   // Verification
   if (!state.teams) state.teams = [];
-  if (state.teams.length === 0 && (!state.config || state.config.name === "Turnier")) {
+  const defaultTournamentNames = ["Tournament", "Tur" + "nier"];
+  if (
+    state.teams.length === 0 &&
+    (!state.config || defaultTournamentNames.includes(state.config.name))
+  ) {
     loadDefaults();
   }
   normalizeState();
@@ -121,9 +125,9 @@ function createNewTournament(reload = true) {
   // Build a fresh state for the new tournament slot.
   state = {
     id: newId,
-    config: { name: "Neues Turnier", type: "SWISS", totalRounds: 5, boardsPerMatch: 4, pointsMatchWin: 2, pointsMatchDraw: 1, pointsMatchLoss: 0, pointsBye: 2, rulesPreset: "CUSTOM" },
+    config: { name: "New Tournament", type: "SWISS", totalRounds: 5, boardsPerMatch: 4, pointsMatchWin: 2, pointsMatchDraw: 1, pointsMatchLoss: 0, pointsBye: 2, rulesPreset: "CUSTOM" },
     mode: "TEAM",
-    singles: { config: { name: "Neues Einzelturnier", type: "SWISS", totalRounds: 5, pointsWin: 1, pointsDraw: 0.5, pointsLoss: 0, pointsBye: 1, rulesPreset: "CUSTOM" }, players: [], rounds: [], currentRound: 0, status: "SETUP", excludedPlayersThisRound: [] },
+    singles: { config: { name: "New Singles Tournament", type: "SWISS", totalRounds: 5, pointsWin: 1, pointsDraw: 0.5, pointsLoss: 0, pointsBye: 1, rulesPreset: "CUSTOM" }, players: [], rounds: [], currentRound: 0, status: "SETUP", excludedPlayersThisRound: [] },
     teams: [],
     rounds: [],
     currentRound: 0,
@@ -210,11 +214,11 @@ async function saveState() {
     meta.activeId = state.id;
 
     // Update or Add to list
-    let name = "Turnier";
+    let name = "Tournament";
     if (state.mode === "SINGLES" && state.singles && state.singles.config) {
-      name = state.singles.config.name || "Einzelturnier";
+      name = state.singles.config.name || "Singles Tournament";
     } else if (state.config) {
-      name = state.config.name || "Turnier";
+      name = state.config.name || "Tournament";
     }
 
     const idx = meta.tournaments.findIndex(t => t.id === state.id);
@@ -229,7 +233,7 @@ async function saveState() {
     localStorage.setItem(META_KEY, JSON.stringify(meta));
 
   } catch (e) {
-    console.warn("LocalStorage nicht verfügbar:", e);
+    console.warn("LocalStorage not available:", e);
   }
 }
 

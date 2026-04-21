@@ -77,7 +77,7 @@ state.currentRound = 0;
 state.rounds = [];
 openPairingSwapModal();
 assert.strictEqual(alertModal.classList.contains("hidden"), false);
-assert(alertMessage.innerText.includes("Noch keine Paarungen"));
+assert(alertMessage.innerText.includes("No pairings"));
 
 // openPairingSwapModal guard: only current round editable
 alertModal.classList.add("hidden");
@@ -86,7 +86,7 @@ state.currentRound = 1;
 state.rounds = [{ matches: [] }, { matches: [] }];
 openPairingSwapModal();
 assert.strictEqual(alertModal.classList.contains("hidden"), false);
-assert(alertMessage.innerText.includes("aktuelle Runde"));
+assert(alertMessage.innerText.includes("current round"));
 
 // openPairingSwapModal success
 alertModal.classList.add("hidden");

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -19,9 +19,9 @@
         <button
           class="nav-btn"
           onclick="openTournamentManager()"
-          title="Turniere verwalten"
+          title="Manage tournaments"
         >
-          Turniere
+          Tournaments
         </button>
         <button class="nav-btn active" data-target="setup">Setup</button>
         <button
@@ -30,10 +30,10 @@
           id="nav-pairings"
           disabled
         >
-          Paarungen
+          Pairings
         </button>
         <button class="nav-btn" data-target="results" id="nav-results" disabled>
-          Ergebnisse
+          Results
         </button>
         <button
           class="nav-btn"
@@ -41,7 +41,7 @@
           id="nav-standings"
           disabled
         >
-          Rangliste
+          Standings
         </button>
       </div>
       <div class="nav-actions">
@@ -50,7 +50,7 @@
           id="undo-btn"
           onclick="undo()"
           disabled
-          title="Rückgängig (Undo)"
+          title="Undo"
         >
           ↩️
         </button>
@@ -59,7 +59,7 @@
           id="redo-btn"
           onclick="redo()"
           disabled
-          title="Wiederherstellen (Redo)"
+          title="Redo"
         >
           ↪️
         </button>
@@ -67,14 +67,14 @@
           class="btn secondary sm"
           onclick="toggleTheme()"
           id="theme-toggle"
-          title="Thema wechseln"
+          title="Toggle theme"
         >
           🌙
         </button>
         <button
           class="btn danger sm"
           onclick="resetTournament()"
-          title="Turnier zurücksetzen"
+          title="Reset tournament"
         >
           Reset
         </button>
@@ -86,20 +86,20 @@
         <section id="setup" class="view active">
           <div class="setup-grid">
             <div class="card setup-card shadow-md">
-              <h2>Turniereinstellungen</h2>
+              <h2>Tournament Settings</h2>
               <div class="settings-grid">
-                <div class="section-title">Allgemein</div>
+                <div class="section-title">General</div>
                 <div class="form-group full-width">
-                  <label for="tournament-name">Turniername</label>
+                  <label for="tournament-name">Tournament Name</label>
                   <input
                     type="text"
                     id="tournament-name"
                     value="Tom Kahle"
-                    placeholder="Name des Turniers"
+                    placeholder="Tournament name"
                   />
                 </div>
                 <div class="form-group full-width">
-                  <label>Turniermodus</label>
+                  <label>Tournament Mode</label>
                   <div class="option-group" role="radiogroup">
                     <label class="option-pill">
                       <input
@@ -108,7 +108,7 @@
                         value="TEAM"
                         checked
                       />
-                      <span>Mannschaftsturnier</span>
+                      <span>Team Tournament</span>
                     </label>
                     <label class="option-pill">
                       <input
@@ -116,7 +116,7 @@
                         name="tournament-mode"
                         value="SINGLES"
                       />
-                      <span>Einzelturnier</span>
+                      <span>Singles Tournament</span>
                     </label>
                   </div>
                 </div>
@@ -125,12 +125,12 @@
                 <div class="form-group">
                   <label for="pairing-system">System</label>
                   <select id="pairing-system">
-                    <option value="SWISS">Schweizer S.</option>
+                    <option value="SWISS">Swiss System</option>
                     <option value="ROUND_ROBIN">Round Robin</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Bretter (pro Match)</label>
+                  <label>Boards (per match)</label>
                   <input
                     type="number"
                     id="boards-count"
@@ -140,7 +140,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Rundenanzahl</label>
+                  <label>Number of Rounds</label>
                   <input
                     type="number"
                     id="total-rounds"
@@ -150,36 +150,36 @@
                   />
                 </div>
 
-                <div class="section-title">Regeln</div>
+                <div class="section-title">Rules</div>
                 <div class="form-group full-width">
                   <select id="rules-preset">
                     <option value="FIDE">FIDE</option>
                     <option value="USCF">USCF</option>
-                    <option value="CUSTOM">Benutzerdefiniert</option>
+                    <option value="CUSTOM">Custom</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Punkte Sieg</label>
+                  <label>Points for Win</label>
                   <input type="number" id="points-win" value="2" />
                 </div>
                 <div class="form-group">
-                  <label>Punkte Remis</label>
+                  <label>Points for Draw</label>
                   <input type="number" id="points-draw" value="1" />
                 </div>
               </div>
             </div>
 
             <div class="card setup-card shadow-md">
-              <h2>Teams verwalten</h2>
+              <h2>Manage Teams</h2>
               <div class="team-input-row">
                 <input
                   type="text"
                   id="new-team-name"
-                  placeholder="Neues Team (z.B. Klasse 10B)"
+                  placeholder="New team (e.g. Class 10B)"
                   onkeydown="if (event.key === 'Enter') addTeam();"
                 />
                 <button class="btn primary" onclick="addTeam()">
-                  + Hinzufügen
+                  + Add
                 </button>
               </div>
               <ul id="team-list" class="team-list">
@@ -187,7 +187,7 @@
               </ul>
               <div class="actions">
                 <button class="btn success large" onclick="startTournament()">
-                  Turnier starten
+                  Start Tournament
                 </button>
               </div>
             </div>
@@ -198,24 +198,24 @@
         <section id="setup-singles" class="view">
           <div class="setup-grid">
             <div class="card setup-card shadow-md">
-              <h2>Turniereinstellungen (Einzel)</h2>
+              <h2>Tournament Settings (Singles)</h2>
               <div class="settings-grid">
                 <div class="section-title">Allgemein</div>
                 <div class="form-group full-width">
-                  <label for="tournament-name-singles">Turniername</label>
+                  <label for="tournament-name-singles">Tournament Name</label>
                   <input
                     type="text"
                     id="tournament-name-singles"
-                    value="Einzelturnier"
-                    placeholder="Name des Turniers"
+                    value="Singles Tournament"
+                    placeholder="Tournament name"
                   />
                 </div>
                 <div class="form-group full-width">
-                  <label>Turniermodus</label>
+                  <label>Tournament Mode</label>
                   <div class="option-group" role="radiogroup">
                     <label class="option-pill">
                       <input type="radio" name="tournament-mode" value="TEAM" />
-                      <span>Mannschaftsturnier</span>
+                      <span>Team Tournament</span>
                     </label>
                     <label class="option-pill">
                       <input
@@ -224,7 +224,7 @@
                         value="SINGLES"
                         checked
                       />
-                      <span>Einzelturnier</span>
+                      <span>Singles Tournament</span>
                     </label>
                   </div>
                 </div>
@@ -233,12 +233,12 @@
                 <div class="form-group">
                   <label for="pairing-system-singles">System</label>
                   <select id="pairing-system-singles">
-                    <option value="SWISS">Schweizer S.</option>
+                    <option value="SWISS">Swiss System</option>
                     <option value="ROUND_ROBIN">Round Robin</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Rundenanzahl</label>
+                  <label>Number of Rounds</label>
                   <input
                     type="number"
                     id="total-rounds-singles"
@@ -248,36 +248,36 @@
                   />
                 </div>
 
-                <div class="section-title">Regeln</div>
+                <div class="section-title">Rules</div>
                 <div class="form-group full-width">
                   <select id="rules-preset-singles">
                     <option value="FIDE">FIDE</option>
                     <option value="USCF">USCF</option>
-                    <option value="CUSTOM">Benutzerdefiniert</option>
+                    <option value="CUSTOM">Custom</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Punkte Sieg</label>
+                  <label>Points for Win</label>
                   <input type="number" id="points-win-singles" value="1" />
                 </div>
                 <div class="form-group">
-                  <label>Punkte Remis</label>
+                  <label>Points for Draw</label>
                   <input type="number" id="points-draw-singles" value="0.5" />
                 </div>
               </div>
             </div>
 
             <div class="card setup-card shadow-md">
-              <h2>Spieler verwalten</h2>
+              <h2>Manage Players</h2>
               <div class="team-input-row">
                 <input
                   type="text"
                   id="new-player-name"
-                  placeholder="Neuer Spieler (z.B. Max Mustermann)"
+                  placeholder="New player (e.g. Alex Smith)"
                   onkeydown="if (event.key === 'Enter') addPlayer();"
                 />
                 <button class="btn primary" onclick="addPlayer()">
-                  + Hinzufügen
+                  + Add
                 </button>
               </div>
               <ul id="player-list" class="team-list">
@@ -288,7 +288,7 @@
                   class="btn success large"
                   onclick="startSinglesTournament()"
                 >
-                  Einzelturnier starten
+                  Start Singles Tournament
                 </button>
               </div>
             </div>
@@ -298,16 +298,16 @@
         <!-- SECTION: PAIRINGS (TEAMS) -->
         <section id="pairings" class="view">
           <div class="header-row">
-            <h2 id="round-display-pairings">Runde 1</h2>
+            <h2 id="round-display-pairings">Round 1</h2>
             <div class="header-actions">
               <button class="btn secondary sm" onclick="openPairingSwapModal()">
-                Paarungen bearbeiten
+                Edit Pairings
               </button>
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
               <button class="btn primary sm" onclick="goToResults()">
-                Ergebnisse →
+                Results →
               </button>
             </div>
           </div>
@@ -315,7 +315,7 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Tisch</th>
+                  <th>Board</th>
                   <th>Team 1</th>
                   <th class="center">MP</th>
                   <th class="center">vs</th>
@@ -333,13 +333,13 @@
         <!-- SECTION: PAIRINGS (SINGLES) -->
         <section id="pairings-singles" class="view">
           <div class="header-row">
-            <h2 id="round-display-pairings-singles">Runde 1</h2>
+            <h2 id="round-display-pairings-singles">Round 1</h2>
             <div class="header-actions">
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
               <button class="btn primary sm" onclick="goToSinglesResults()">
-                Ergebnisse →
+                Results →
               </button>
             </div>
           </div>
@@ -347,12 +347,12 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Tisch</th>
-                  <th>Spieler 1</th>
-                  <th class="center">Punkte</th>
+                  <th>Board</th>
+                  <th>Player 1</th>
+                  <th class="center">Points</th>
                   <th class="center">vs</th>
-                  <th>Spieler 2</th>
-                  <th class="center">Punkte</th>
+                  <th>Player 2</th>
+                  <th class="center">Points</th>
                 </tr>
               </thead>
               <tbody id="pairings-body-singles">
@@ -365,10 +365,10 @@
         <!-- SECTION: RESULTS (TEAMS) -->
         <section id="results" class="view">
           <div class="header-row">
-            <h2 id="round-display-results">Ergebnisse Runde 1</h2>
+            <h2 id="round-display-results">Results Round 1</h2>
             <div class="header-actions">
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
               <button
                 class="btn primary sm"
@@ -376,7 +376,7 @@
                 onclick="nextRound()"
                 disabled
               >
-                Nächste Runde →
+                Next Round →
               </button>
             </div>
           </div>
@@ -388,10 +388,10 @@
         <!-- SECTION: RESULTS (SINGLES) -->
         <section id="results-singles" class="view">
           <div class="header-row">
-            <h2 id="round-display-results-singles">Ergebnisse Runde 1</h2>
+            <h2 id="round-display-results-singles">Results Round 1</h2>
             <div class="header-actions">
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
               <button
                 class="btn primary sm"
@@ -399,7 +399,7 @@
                 onclick="nextSinglesRound()"
                 disabled
               >
-                Nächste Runde →
+                Next Round →
               </button>
             </div>
           </div>
@@ -411,7 +411,7 @@
         <!-- SECTION: STANDINGS (TEAMS) -->
         <section id="standings" class="view">
           <div class="header-row">
-            <h2>Rangliste</h2>
+            <h2>Standings</h2>
             <div class="header-actions">
               <button
                 class="btn success sm"
@@ -419,7 +419,7 @@
                 onclick="addExtraRound()"
                 style="display: none"
               >
-                + Runde hinzufügen
+                + Add Round
               </button>
               <button class="btn secondary sm" onclick="exportStandingsToCSV()">
                 ⬇️ Export CSV
@@ -437,7 +437,7 @@
                 ⬆️ Import JSON
               </button>
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
             </div>
           </div>
@@ -446,7 +446,7 @@
               <table class="data-table ranking-table">
                 <thead>
                   <tr>
-                    <th>Rang</th>
+                    <th>Rank</th>
                     <th>Team</th>
                     <th class="center">MP</th>
                     <th class="center">BP</th>
@@ -466,7 +466,7 @@
         <!-- SECTION: STANDINGS (SINGLES) -->
         <section id="standings-singles" class="view">
           <div class="header-row">
-            <h2>Rangliste (Einzel)</h2>
+            <h2>Standings (Singles)</h2>
             <div class="header-actions">
               <button
                 class="btn secondary sm"
@@ -481,7 +481,7 @@
                 ⬇️ Export JSON
               </button>
               <button class="btn secondary sm" onclick="printActiveView()">
-                Drucken
+                Print
               </button>
             </div>
           </div>
@@ -490,9 +490,9 @@
               <table class="data-table ranking-table">
                 <thead>
                   <tr>
-                    <th>Rang</th>
-                    <th>Spieler</th>
-                    <th class="center">Punkte</th>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th class="center">Points</th>
                     <th class="center">Buchholz</th>
                   </tr>
                 </thead>
@@ -531,8 +531,8 @@
     <!-- Generic Alert -->
     <div id="alert-modal" class="modal hidden">
       <div class="modal-content sm">
-        <h3 id="alert-title">Hinweis</h3>
-        <p id="alert-message">Nachricht</p>
+        <h3 id="alert-title">Notice</h3>
+        <p id="alert-message">Message</p>
         <div class="modal-actions end">
           <button class="btn primary" onclick="closeAlert()">OK</button>
         </div>
@@ -542,13 +542,13 @@
     <!-- Generic Confirm -->
     <div id="confirm-modal" class="modal hidden">
       <div class="modal-content sm">
-        <h3 id="confirm-title">Bestätigung</h3>
-        <p id="confirm-message">Sind Sie sicher?</p>
+        <h3 id="confirm-title">Confirmation</h3>
+        <p id="confirm-message">Are you sure?</p>
         <div class="modal-actions end">
           <button class="btn secondary" id="confirm-cancel-btn">
-            Abbrechen
+            Cancel
           </button>
-          <button class="btn danger" id="confirm-ok-btn">Ja, machen</button>
+          <button class="btn danger" id="confirm-ok-btn">Yes, do it</button>
         </div>
       </div>
     </div>
@@ -556,17 +556,17 @@
     <!-- Reset Options -->
     <div id="reset-options-modal" class="modal hidden">
       <div class="modal-content sm">
-        <h3>Turnier zurücksetzen</h3>
-        <p id="reset-options-message">Teams/Spieler löschen oder behalten?</p>
+        <h3>Reset Tournament</h3>
+        <p id="reset-options-message">Delete or keep teams/players?</p>
         <div class="modal-actions end">
           <button class="btn secondary" onclick="closeResetOptionsModal()">
-            Abbrechen
+            Cancel
           </button>
           <button class="btn secondary" onclick="resetKeepRoster()">
-            Behalten
+            Keep
           </button>
           <button class="btn danger" onclick="resetRemoveRoster()">
-            Löschen
+            Delete
           </button>
         </div>
       </div>
@@ -575,17 +575,17 @@
     <!-- Exclude Teams -->
     <div id="exclude-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>Teams für diese Runde ausschließen</h3>
-        <p>Wähle Teams aus, die in dieser Runde nicht spielen können:</p>
+        <h3>Exclude Teams for This Round</h3>
+        <p>Select teams that cannot play in this round:</p>
         <div id="exclude-teams-list" class="exclude-list">
           <!-- Checkboxes will be generated here -->
         </div>
         <div class="modal-actions">
           <button class="btn secondary" onclick="closeExcludeModal()">
-            Abbrechen
+            Cancel
           </button>
           <button class="btn primary" onclick="confirmExcludeAndPair()">
-            Paarungen erstellen
+            Create Pairings
           </button>
         </div>
       </div>
@@ -594,17 +594,17 @@
     <!-- Exclude Players -->
     <div id="exclude-singles-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>Spieler für diese Runde ausschließen</h3>
-        <p>Wähle Spieler aus, die in dieser Runde nicht spielen können:</p>
+        <h3>Exclude Players for This Round</h3>
+        <p>Select players that cannot play in this round:</p>
         <div id="exclude-players-list" class="exclude-list">
           <!-- Checkboxes will be generated here -->
         </div>
         <div class="modal-actions">
           <button class="btn secondary" onclick="closeExcludeSinglesModal()">
-            Abbrechen
+            Cancel
           </button>
           <button class="btn primary" onclick="confirmExcludeSinglesAndPair()">
-            Paarungen erstellen
+            Create Pairings
           </button>
         </div>
       </div>
@@ -613,8 +613,8 @@
     <!-- Pairing Swap -->
     <div id="pairing-swap-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>Paarungen tauschen</h3>
-        <p>Wähle zwei Teamslots, die getauscht werden sollen:</p>
+        <h3>Swap Pairings</h3>
+        <p>Select two team slots to swap:</p>
         <div class="form-group">
           <label for="swap-slot-a">Slot A</label>
           <select id="swap-slot-a"></select>
@@ -625,10 +625,10 @@
         </div>
         <div class="modal-actions">
           <button class="btn secondary" onclick="closePairingSwapModal()">
-            Abbrechen
+            Cancel
           </button>
           <button class="btn primary" onclick="confirmPairingSwap()">
-            Tauschen
+            Swap
           </button>
         </div>
       </div>
@@ -638,7 +638,7 @@
     <div id="tournament-manager-modal" class="modal hidden">
       <div class="modal-content large">
         <div class="modal-header">
-          <h3>Turniere verwalten</h3>
+          <h3>Manage Tournaments</h3>
           <button class="close-btn" onclick="closeTournamentManager()">
             ×
           </button>
@@ -650,7 +650,7 @@
         </div>
         <div class="modal-actions">
           <button class="btn primary" onclick="createNewTournamentUI()">
-            + Neues Turnier
+            + New Tournament
           </button>
         </div>
       </div>

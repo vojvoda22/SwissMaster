@@ -41,7 +41,7 @@ function exportStandingsToCSV() {
   calculateStandings();
 
   const headers = [
-    "Rang",
+    "Rank",
     "Team",
     "MP",
     "BP",
@@ -64,14 +64,14 @@ function exportStandingsToCSV() {
     rows.push(row.join(","));
   });
 
-  const safeName = sanitizeFilenameSegment(state.config?.name, "Turnier");
+  const safeName = sanitizeFilenameSegment(state.config?.name, "Tournament");
   const filename = `Standings_${safeName}_R${state.currentRound}.csv`;
   downloadCSV(filename, rows.join("\n"));
 }
 
 function exportSinglesStandingsToCSV() {
   calculateStandingsSingles();
-  const headers = ["Rang", "Spieler", "MP", "Buchholz"];
+  const headers = ["Rank", "Player", "MP", "Buchholz"];
   const rows = [headers.join(",")];
 
   state.singles.players.forEach((p, index) => {
@@ -81,7 +81,7 @@ function exportSinglesStandingsToCSV() {
 
   const safeName = sanitizeFilenameSegment(
     state.singles.config?.name,
-    "Einzelturnier",
+    "Singles_Tournament",
   );
   const filename = `Singles_Standings_${safeName}_R${state.singles.currentRound}.csv`;
   downloadCSV(filename, rows.join("\n"));
@@ -90,7 +90,7 @@ function exportSinglesStandingsToCSV() {
 function exportSinglesTournamentToJSON() {
   const safeName = sanitizeFilenameSegment(
     state.singles.config?.name,
-    "Einzelturnier",
+    "Singles_Tournament",
   );
   const filename = `Singles_${safeName}_R${state.singles.currentRound}.json`;
   const json = JSON.stringify(state.singles, null, 2);
@@ -98,7 +98,7 @@ function exportSinglesTournamentToJSON() {
 }
 
 function exportMatchesToCSV() {
-  const headers = ["Runde", "Tisch", "Team 1", "Ergebnis", "Team 2"];
+  const headers = ["Round", "Board", "Team 1", "Result", "Team 2"];
   const rows = [headers.join(",")];
 
   state.rounds.forEach((round, index) => {
@@ -136,13 +136,13 @@ function exportMatchesToCSV() {
     });
   });
 
-  const safeName = sanitizeFilenameSegment(state.config?.name, "Turnier");
+  const safeName = sanitizeFilenameSegment(state.config?.name, "Tournament");
   const filename = `Matches_${safeName}_R${state.currentRound}.csv`;
   downloadCSV(filename, rows.join("\n"));
 }
 
 function exportTournamentToJSON() {
-  const safeName = sanitizeFilenameSegment(state.config?.name, "Turnier");
+  const safeName = sanitizeFilenameSegment(state.config?.name, "Tournament");
   const filename = `Tournament_${safeName}_R${state.currentRound}.json`;
   const json = JSON.stringify(state, null, 2);
   downloadBlob(filename, json, "application/json;charset=utf-8;");

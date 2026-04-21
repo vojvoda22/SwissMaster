@@ -455,11 +455,11 @@ console.log("=== UI ACTIONS EXTENDED TESTS START ===");
   state.mode = "TEAM";
   resetTournament();
   assert.strictEqual(resetModal.classList.contains("hidden"), false);
-  assert(resetMessage.innerText.includes("Mannschaften"));
+  assert(resetMessage.innerText.includes("teams"));
 
   state.mode = "SINGLES";
   resetTournament();
-  assert(resetMessage.innerText.includes("Spieler"));
+  assert(resetMessage.innerText.includes("players"));
   closeResetOptionsModal();
   assert.strictEqual(resetModal.classList.contains("hidden"), true);
 
@@ -538,7 +538,7 @@ console.log("=== UI ACTIONS EXTENDED TESTS START ===");
   assert.strictEqual(tournamentList.children.length, 3);
   assert(tournamentList.children[0].innerHTML.includes("New Cup"));
   assert(tournamentList.children[1].innerHTML.includes("Active Cup"));
-  assert(tournamentList.children[1].innerHTML.includes("(Aktiv)"));
+  assert(tournamentList.children[1].innerHTML.includes("(Active)"));
   closeTournamentManager();
   assert.strictEqual(tournamentManagerModal.classList.contains("hidden"), true);
 

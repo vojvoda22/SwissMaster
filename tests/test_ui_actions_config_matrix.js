@@ -426,7 +426,7 @@ async function runAsyncChecks() {
   resetStateFixture();
   await nextRound();
   assert.strictEqual(alertCalls.length, 1);
-  assert(alertCalls[0][0].includes("Keine aktuelle Runde"));
+  assert(alertCalls[0][0].includes("No current round"));
 
   // nextRound: incomplete and confirmation rejected
   resetSpies();
@@ -482,7 +482,7 @@ async function runAsyncChecks() {
   resetStateFixture();
   await nextSinglesRound();
   assert.strictEqual(alertCalls.length, 1);
-  assert(alertCalls[0][0].includes("Keine aktuelle Runde"));
+  assert(alertCalls[0][0].includes("No current round"));
 
   // nextSinglesRound: final round branch
   resetSpies();

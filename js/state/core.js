@@ -1,6 +1,6 @@
 let state = {
   config: {
-    name: "Turnier",
+    name: "Tournament",
     type: "SWISS", // 'SWISS' or 'ROUND_ROBIN'
     totalRounds: 5,
     boardsPerMatch: 4,
@@ -13,7 +13,7 @@ let state = {
   mode: "TEAM",
   singles: {
     config: {
-      name: "Einzelturnier",
+      name: "Singles Tournament",
       type: "SWISS",
       totalRounds: 5,
       pointsWin: 1,

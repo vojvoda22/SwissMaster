@@ -102,7 +102,7 @@ assert.strictEqual(downloads.length, 1);
 assert.strictEqual(downloads[0].download, "Standings_Cup_2026_R2.csv");
 const standingsBlob = urlCreated[urlCreated.length - 1].blob;
 assert.strictEqual(standingsBlob.type, "text/csv;charset=utf-8;");
-assert(standingsBlob.parts[0].includes("Rang,Team,MP,BP,Buchholz,MedianBuchholz,SonnebornBerger"));
+assert(standingsBlob.parts[0].includes("Rank,Team,MP,BP,Buchholz,MedianBuchholz,SonnebornBerger"));
 assert(standingsBlob.parts[0].includes("\"Alpha,Team\""));
 
 downloads.length = 0;

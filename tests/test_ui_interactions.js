@@ -168,7 +168,7 @@ async function run() {
     ],
   },
   });
-  assert(alertMessage.innerText.includes("Fehlende Turnierdaten"));
+  assert(alertMessage.innerText.includes("missing tournament data"));
 
   // Confirm reject path
   global.showConfirm = async () => false;
@@ -337,7 +337,7 @@ async function run() {
   slotA.value = "0:teamA";
   slotB.value = "0:teamA";
   confirmPairingSwap();
-  assert(alertMessage.innerText.includes("unterschiedliche Slots"));
+  assert(alertMessage.innerText.includes("different slots"));
 
   console.log("=== UI INTERACTIONS TESTS END ===");
 }

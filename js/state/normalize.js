@@ -19,7 +19,7 @@ function getPlayer(id) {
 
 function normalizeState() {
   const defaultConfig = {
-    name: "Turnier",
+    name: "Tournament",
     type: "SWISS",
     totalRounds: 5,
     boardsPerMatch: 4,
@@ -36,7 +36,7 @@ function normalizeState() {
   if (!state.singles) {
     state.singles = {
       config: {
-        name: "Einzelturnier",
+        name: "Singles Tournament",
         type: "SWISS",
         totalRounds: 5,
         pointsWin: 1,
@@ -74,7 +74,7 @@ function normalizeState() {
 
   if (!state.singles.config) {
     state.singles.config = {
-      name: "Einzelturnier",
+      name: "Singles Tournament",
       type: "SWISS",
       totalRounds: 5,
       pointsWin: 1,

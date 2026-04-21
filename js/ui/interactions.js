@@ -20,7 +20,7 @@ function showToast(message, type = "info", duration = 3000) {
   }, duration);
 }
 
-function showAlert(message, title = "Hinweis") {
+function showAlert(message, title = "Notice") {
   document.getElementById("alert-title").innerText = title;
   document.getElementById("alert-message").innerText = message;
   document.getElementById("alert-modal").classList.remove("hidden");
@@ -46,20 +46,20 @@ function setupImportListener() {
       const parsed = JSON.parse(text);
 
       if (!parsed || typeof parsed !== "object") {
-        showAlert("Ungültige Datei: Kein gültiges JSON-Objekt.", "Import fehlgeschlagen");
+        showAlert("Invalid file: not a valid JSON object.", "Import Failed");
         return;
       }
 
       // Minimal validation
       if (!parsed.teams || !parsed.rounds || !parsed.config) {
-        showAlert("Ungültige Datei: Fehlende Turnierdaten.", "Import fehlgeschlagen");
+        showAlert("Invalid file: missing tournament data.", "Import Failed");
         return;
       }
 
       if (
         !(await showConfirm(
-          "Import überschreibt den aktuellen Turnierstand. Fortfahren?",
-          "Import bestätigen",
+          "Importing will overwrite the current tournament state. Continue?",
+          "Confirm Import",
         ))
       ) {
         return;
@@ -73,10 +73,10 @@ function setupImportListener() {
       lockSetup();
       renderAll();
       showSection("standings");
-      showToast("Import erfolgreich.", "success");
+      showToast("Import successful.", "success");
     } catch (err) {
       console.error(err);
-      showAlert("Import fehlgeschlagen: " + err.message, "Fehler");
+      showAlert("Import failed: " + err.message, "Error");
     }
   });
 }
@@ -84,7 +84,7 @@ function setupImportListener() {
 // Global resolve for confirm
 let confirmResolve = null;
 
-function showConfirm(message, title = "Bestätigung") {
+function showConfirm(message, title = "Confirmation") {
   return new Promise((resolve) => {
     document.getElementById("confirm-title").innerText = title;
     document.getElementById("confirm-message").innerText = message;
@@ -370,11 +370,11 @@ function setupPresetListeners() {
 
 function openPairingSwapModal() {
   if (state.currentRound === 0) {
-    showAlert("Noch keine Paarungen vorhanden.", "Hinweis");
+    showAlert("No pairings available yet.", "Notice");
     return;
   }
   if (state.currentRound !== state.rounds.length) {
-    showAlert("Nur die aktuelle Runde kann bearbeitet werden.", "Hinweis");
+    showAlert("Only the current round can be edited.", "Notice");
     return;
   }
 
@@ -389,7 +389,7 @@ function openPairingSwapModal() {
     if (tA) {
       options.push({
         value: `${idx}:teamA`,
-        label: `Tisch ${m.table}: ${tA.name} (A)`,
+        label: `Board ${m.table}: ${tA.name} (A)`,
       });
     }
     if (!m.isBye) {
@@ -397,7 +397,7 @@ function openPairingSwapModal() {
       if (tB) {
         options.push({
           value: `${idx}:teamB`,
-          label: `Tisch ${m.table}: ${tB.name} (B)`,
+          label: `Board ${m.table}: ${tB.name} (B)`,
         });
       }
     }
@@ -431,7 +431,7 @@ function confirmPairingSwap() {
   const valA = slotA.value;
   const valB = slotB.value;
   if (!valA || !valB || valA === valB) {
-    showAlert("Bitte zwei unterschiedliche Slots wählen.", "Hinweis");
+    showAlert("Please choose two different slots.", "Notice");
     return;
   }
 
@@ -462,5 +462,5 @@ function confirmPairingSwap() {
   closePairingSwapModal();
   renderAll();
   showSection("pairings");
-  showToast("Paarungen aktualisiert.", "success");
+  showToast("Pairings updated.", "success");
 }

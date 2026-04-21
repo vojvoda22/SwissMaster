@@ -66,7 +66,7 @@ assert(teamList.children[0].innerHTML.includes("editTeam('A')"));
 state.mode = "SINGLES";
 state.singles.players = [];
 renderSetupSingles();
-assert(playerList.innerHTML.includes("Noch keine Spieler"));
+assert(playerList.innerHTML.includes("No players"));
 
 state.singles.players = [new Player("P1", "P1"), new Player("P2", "P2")];
 renderSetupSingles();
@@ -112,7 +112,7 @@ state.rounds = [
   },
 ];
 renderPairings(1);
-assert(pairingsRoundText.innerText.includes("Runde 1"));
+assert(pairingsRoundText.innerText.includes("Round 1"));
 assert.strictEqual(pairingsBody.children.length, 2);
 assert(pairingsBody.children[1].innerHTML.includes("<i>-</i>"));
 assert.strictEqual(pairingsHeader.children.length, 1);
@@ -138,7 +138,7 @@ state.singles.rounds = [
   },
 ];
 renderPairingsSingles(1);
-assert(pairingsSinglesRoundText.innerText.includes("Runde 1"));
+assert(pairingsSinglesRoundText.innerText.includes("Round 1"));
 assert.strictEqual(pairingsBodySingles.children.length, 1);
 assert.strictEqual(pairingsSinglesHeader.children.length, 1);
 
@@ -163,7 +163,7 @@ state.rounds = [
   },
 ];
 renderResults(1);
-assert(resultsRoundText.innerText.includes("Runde 1"));
+assert(resultsRoundText.innerText.includes("Round 1"));
 assert.strictEqual(resultsContainer.children.length, 1);
 assert.strictEqual(nextRoundBtn.style.display, "none");
 
@@ -203,7 +203,7 @@ state.singles.players = [
   new Player("P3", "P3"),
 ];
 renderResultsSingles(1);
-assert(resultsSinglesRoundText.innerText.includes("Runde 1"));
+assert(resultsSinglesRoundText.innerText.includes("Round 1"));
 assert.strictEqual(resultsSinglesContainer.children.length, 1);
 assert.strictEqual(nextSinglesBtn.style.display, "block");
 assert.strictEqual(singlesCompletenessCalls > 0, true);
